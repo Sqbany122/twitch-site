@@ -5,7 +5,7 @@ import { Navbar, Container, NavDropdown, Nav, Dropdown } from "react-bootstrap";
 function Navigation() {
     return (
         <Navbar className="navbar bg-black py-3 px-4" collapseOnSelect  expand="lg">
-            <Navbar.Brand as={Link} to="/" className="text-light" style={{fontSize: "1.7rem"}}>BigosBloodyBoy</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/" className="text-light" style={{fontSize: "1.7rem"}}><img src="logo.jpg" width="50px" className="rounded-circle navbar-logo"/><b>BigosBloodyBoy</b></Navbar.Brand>
             <Navbar.Toggle  className="bg-light" />
             <Navbar.Collapse>
                 <Nav className="mr-auto">

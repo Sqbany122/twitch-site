@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+import dateFormat from "dateformat";
 
 export default class Clips extends React.Component {
 
@@ -45,6 +46,8 @@ export default class Clips extends React.Component {
         .then(response => response.json())
         .then(json => {
             clip.gameInfo = json.data[0].box_art_url.replace(/{width}x{height}/i, '52x72');
+            let date = dateFormat(clip.created_at, "mediumDate");
+            clip.created_at = date;
             this.state.clips[index] = clip;
             this.setState({ clips: this.state.clips });
         })
@@ -57,6 +60,7 @@ export default class Clips extends React.Component {
     render() {
         return (
             <div className="row py-4 px-4">
+                <h1 className="text-light">Klipy</h1>
                 {this.state.loading || !this.state.clips ? (
                     <div>Loading....</div>
                 ) : (
@@ -64,7 +68,7 @@ export default class Clips extends React.Component {
                         {this.state.clips.map(item => (
                             <button className="clipButtonBox p-0 position-relative embed-responsive embed-responsive-16by9 text-light rounded-full">
                                 <img className="embed-responsive-item rounded-full" src={item.thumbnail_url} allowfullscreen></img>
-                                <div className="position-absolute d-flex flex-column justify-content-between left-0 top-0 p-2 w-100 h-100">
+                                <div className="clipsBackgroundDark position-absolute d-flex flex-column justify-content-between left-0 top-0 p-2 w-100 h-100">
                                     <div className="d-flex justify-content-between align-items-start text-xs w-100">
                                         <div className="clipViewCount px-2 d-flex align-items-center rounded-full">
                                             <i className="fas fa-eye"></i>{item.view_count}
