@@ -8,7 +8,7 @@ export default class Clips extends React.Component {
         super(props)
         this.state = {
             loading: true,
-            url: "https://api.twitch.tv/helix/clips?broadcaster_id=80128309",
+            url: "https://api.twitch.tv/helix/clips?broadcaster_id=" + process.env.REACT_APP_MY_CHANNEL_ID,
             urlGame: "https://api.twitch.tv/helix/games?id=",
             requestOptions: {
                 method: 'GET',
@@ -83,7 +83,10 @@ export default class Clips extends React.Component {
                                             <div className="clipTitleItem px-2 h-5 d-flex align-items-center rounded-full">
                                                 {item.title}
                                             </div>
-                                            <div className="clipTitleBox px-2 h-5 d-flex align-items-center rounded-full">
+                                            <div className="clipOtherInfoBox  px-2 h-5 d-flex align-items-center rounded-full">
+                                                {item.creator_name}
+                                            </div>
+                                            <div className="clipOtherInfoBox px-2 h-5 d-flex align-items-center rounded-full">
                                                 {item.created_at}
                                             </div>
                                         </div>

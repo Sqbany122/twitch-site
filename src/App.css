@@ -20,6 +20,10 @@ html, body {
   border-radius: 50%;
 }
 
+.default-border {
+  border-bottom: solid .5px #1f1f1f;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -108,6 +112,15 @@ html, body {
 }
 
 .clipTitleItem {
-  font-size: 14px;
+  font-size: .9rem;
   font-weight: bold;
+}
+
+.clipOtherInfoBox {
+  font-size: .8rem;
+  color: lightgray;
+}
+
+#collasible-nav-dropdown {
+  color: #fff !important;
 }

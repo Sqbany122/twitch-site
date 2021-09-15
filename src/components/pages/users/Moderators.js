@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
-export default class Users extends React.Component {
+export default class Moderators extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
             loading: true,
-            urlModerators: "https://api.twitch.tv/helix/clips?broadcaster_id=80128309",
+            urlModerators: "https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=" + process.env.REACT_APP_MY_CHANNEL_ID,
             requestOptions: {
                 method: 'GET',
                 headers: { 
@@ -19,14 +19,26 @@ export default class Users extends React.Component {
         }
     }
 
+    getModerators() {
+        fetch(
+            this.state.urlModerators, 
+            this.state.requestOptions
+        )
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            this.setState({ moderators: json.data, loading: false });
+        })
+    }
+
     componentDidMount() {
-        
+        // this.getModerators();
     }
 
     render() {
         return (
             <div className="row py-4 px-4">
-                <h1 className="text-light">Klipy</h1>
+                <h1 className="text-light">Moderatorzy</h1>
                 
             </div>
         )
