@@ -28,7 +28,7 @@ function Navigation() {
                     </Nav.Item>
                 </Nav>
                 <Nav className="mr-0">
-                    <Nav.Link className="text-light">
+                    <Nav.Link className="text-light" href="https://tipply.pl/u/bigosbloodyboy" target="_blank">
                         <img src="donate-img.png" width="200px" className="rounded-full" />
                     </Nav.Link>
                 </Nav>
