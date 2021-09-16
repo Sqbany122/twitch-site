@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import dateFormat from "dateformat";
+import ModalPlayer from '../ModalPlayer';
 
 export default class Clips extends React.Component {
 
@@ -17,8 +18,11 @@ export default class Clips extends React.Component {
                     'Client-ID': process.env.REACT_APP_TWITCH_CLIENT_ID
                 },
             },
+            showPlayer: false,   
+            embedUrl: "",
             clips: []
         }
+        this.showPlayer = this.showPlayer.bind(this);
         this.getClips = this.getClips.bind(this);
         this.getGames = this.getGames.bind(this);
     }
@@ -48,11 +52,16 @@ export default class Clips extends React.Component {
             clip.gameInfo = json.data[0].box_art_url.replace(/{width}x{height}/i, '52x72');
             let date = dateFormat(clip.created_at, "mediumDate");
             clip.created_at = date;
+            clip.embed_url = clip.embed_url + "&parent=bigosbloodyboy.pl"
             this.state.clips[index] = clip;
             this.setState({ clips: this.state.clips });
         })
     }
- 
+
+    showPlayer(item) {
+        this.setState({ embedUrl: item, showPlayer: !this.state.showPlayer});
+    }
+
     componentDidMount() {
         this.getClips();
     }
@@ -66,7 +75,7 @@ export default class Clips extends React.Component {
                 ) : (
                     <div className="d-grid clipsGrid py-4">
                         {this.state.clips.map(item => (
-                            <button className="clipButtonBox p-0 position-relative embed-responsive embed-responsive-16by9 text-light rounded-full">
+                            <button className="clipButtonBox p-0 position-relative embed-responsive embed-responsive-16by9 text-light rounded-full" onClick={() => this.showPlayer(item.embed_url)}>
                                 <img className="embed-responsive-item rounded-full" src={item.thumbnail_url} allowfullscreen></img>
                                 <div className="clipsBackgroundDark position-absolute d-flex flex-column justify-content-between left-0 top-0 p-2 w-100 h-100">
                                     <div className="d-flex justify-content-between align-items-start text-xs w-100">
@@ -95,6 +104,10 @@ export default class Clips extends React.Component {
                             </button>
                         ))}
                     </div>
+                )}
+                {this.state.showPlayer ? (
+                    <ModalPlayer embedUrl={this.state.embedUrl} showPlayer={this.showPlayer} /> ) : (
+                    null
                 )}
             </div>
         )
