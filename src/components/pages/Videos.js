@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import dateFormat from "dateformat";
+import ModalPlayer from '../ModalPlayer';
 
 export default class Videos extends React.Component {
 
@@ -16,8 +17,11 @@ export default class Videos extends React.Component {
                     'Client-ID': process.env.REACT_APP_TWITCH_CLIENT_ID
                 },
             },
+            showPlayer: false,   
+            embedUrl: "",
             videos: []
         }
+        this.showPlayer = this.showPlayer.bind(this);
     }
 
     getVideos() {
@@ -34,9 +38,14 @@ export default class Videos extends React.Component {
                 item.duration = item.duration.replace(/s/gi, "");
                 let date = dateFormat(item.created_at, "mediumDate");
                 item.created_at = date;
+                item.url = "https://player.twitch.tv/?video=" + item.id + "&parent=bigosbloodyboy.pl&autoplay=false";
             })
             this.setState({ videos: json.data, loading: false });
         })
+    }
+
+    showPlayer(item) {
+        this.setState({ embedUrl: item, showPlayer: !this.state.showPlayer});
     }
 
     componentDidMount() {
@@ -52,7 +61,7 @@ export default class Videos extends React.Component {
                 ) : (
                     <div className="d-grid clipsGrid py-4">
                         {this.state.videos.map(item => (
-                            <a className="clipButtonBox p-0 position-relative embed-responsive embed-responsive-16by9 text-light rounded-full" href={item.url} target="_blank">
+                            <button className="clipButtonBox p-0 position-relative embed-responsive embed-responsive-16by9 text-light rounded-full" onClick={() => this.showPlayer(item.url)}>
                                 <img className="embed-responsive-item rounded-full" src={item.thumbnail_url} allowfullscreen></img>
                                 <div className="clipsBackgroundDark position-absolute d-flex flex-column justify-content-between left-0 top-0 p-2 w-100 h-100">
                                     <div className="d-flex justify-content-between align-items-start text-xs w-100">
@@ -75,9 +84,13 @@ export default class Videos extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </button>
                         ))}
                     </div>
+                )}
+                {this.state.showPlayer ? (
+                    <ModalPlayer embedUrl={this.state.embedUrl} showPlayer={this.showPlayer} /> ) : (
+                    null
                 )}
             </div>
         )

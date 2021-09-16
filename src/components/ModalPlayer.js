@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import Clips from './pages/Clips';
 export default class ModalPlayer extends React.Component {
 
     constructor(props) {
