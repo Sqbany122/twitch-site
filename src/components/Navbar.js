@@ -22,9 +22,12 @@ function Navigation() {
                     <Nav.Item>        
                         <NavDropdown className="text-light" title="Użytkownicy" id="collasible-nav-dropdown">
                             <NavDropdown.Item eventKey="4" as={Link} to="/moderatorzy">Moderatorzy</NavDropdown.Item>
-                            <NavDropdown.Item eventKey="5" as={Link} to="/subskrybenci">Subskrybenci</NavDropdown.Item>
-                            <NavDropdown.Item eventKey="6" as={Link} to="/follow">Follow'y</NavDropdown.Item>
                         </NavDropdown>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link className="text-light" eventKey="5" as={Link} to="/komendy">
+                            Komendy
+                        </Nav.Link>
                     </Nav.Item>
                 </Nav>
                 <Nav className="mr-0">

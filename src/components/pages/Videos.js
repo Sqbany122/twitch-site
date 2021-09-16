@@ -52,7 +52,7 @@ export default class Videos extends React.Component {
                 ) : (
                     <div className="d-grid clipsGrid py-4">
                         {this.state.videos.map(item => (
-                            <button className="clipButtonBox p-0 position-relative embed-responsive embed-responsive-16by9 text-light rounded-full">
+                            <a className="clipButtonBox p-0 position-relative embed-responsive embed-responsive-16by9 text-light rounded-full" href={item.url} target="_blank">
                                 <img className="embed-responsive-item rounded-full" src={item.thumbnail_url} allowfullscreen></img>
                                 <div className="clipsBackgroundDark position-absolute d-flex flex-column justify-content-between left-0 top-0 p-2 w-100 h-100">
                                     <div className="d-flex justify-content-between align-items-start text-xs w-100">
@@ -75,7 +75,7 @@ export default class Videos extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                            </button>
+                            </a>
                         ))}
                     </div>
                 )}

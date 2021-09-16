@@ -128,3 +128,7 @@ html, body {
 .modalPlayerBackground {
   background-color: rgb(0,0,0,0.8);
 }
+
+.moderatorBox span {
+  margin-left: 1rem;
+}
