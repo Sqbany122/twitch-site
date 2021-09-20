@@ -9,14 +9,7 @@ export default class Videos extends React.Component {
         super(props)
         this.state = {
             loading: true,
-            urlVideos: "https://api.twitch.tv/helix/videos?user_id=" + process.env.REACT_APP_MY_CHANNEL_ID,
-            requestOptions: {
-                method: 'GET',
-                headers: { 
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_TWITCH_AUTH_TOKEN,
-                    'Client-ID': process.env.REACT_APP_TWITCH_CLIENT_ID
-                },
-            },
+            urlVideos: "https://api.bigosbloodyboy.pl/getVideos.php",
             showPlayer: false,   
             embedUrl: "",
             videos: []
@@ -26,8 +19,7 @@ export default class Videos extends React.Component {
 
     getVideos() {
         fetch(
-            this.state.urlVideos, 
-            this.state.requestOptions
+            this.state.urlVideos
         )
         .then(response => response.json())
         .then(json => {

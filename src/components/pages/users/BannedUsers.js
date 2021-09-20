@@ -2,19 +2,19 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import dateFormat from "dateformat";
 
-export default class Moderators extends React.Component {
+export default class BannedUsers extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
             loading: true,
-            url: "https://api.bigosbloodyboy.pl/getModerators.php",
-            moderators: []
+            url: "https://api.bigosbloodyboy.pl/getBannedUsers.php",
+            bannedUsers: []
         }
-        this.getModerators = this.getModerators.bind(this);
+        this.getBannedUsers = this.getBannedUsers.bind(this);
     }
 
-    getModerators() {
+    getBannedUsers() {
         fetch(
             this.state.url
         )
@@ -24,30 +24,31 @@ export default class Moderators extends React.Component {
                 let date = dateFormat(item.created_at, "mediumDate");
                 item.created_at = date;
             })
-            this.setState({ moderators: json.data, loading: false });
+            this.setState({ bannedUsers: json.data, loading: false });
         })
     }
 
     componentDidMount() {
-        this.getModerators();
+        this.getBannedUsers();
     }
 
     render() {
         return (
             <div className="row py-4 px-4">
-                <h1 className="text-light">Moderatorzy</h1>
-                {this.state.loading || !this.state.moderators ? (
+                <h1 className="text-light">Zbanowani użytkownicy</h1>
+                {this.state.loading || !this.state.bannedUsers ? (
                     <div>Loading....</div>
                 ) : (
                 <div className="d-grid clipsGrid py-4">
-                    {this.state.moderators.map(item => (
-                        <a className="d-flex flex-row moderatorBox" href={"https://twitch.tv/" + item.login} target="_blank">
+                    {this.state.bannedUsers.map(item => (
+                        <div className="d-flex flex-row moderatorBox">
                             <img className="rounded-circle" width="80px" src={item.profile_image_url} />
                             <div className="d-flex flex-column justify-content-center">
                                 <span className="text-light"><b>{item.display_name}</b></span>
+                                <span className="moderatorCreatedAt">Zbanowany przez: {item.moderator_name}</span>
                                 <span className="moderatorCreatedAt">cr. {item.created_at}</span>
                             </div>
-                        </a>
+                        </div>
                     ))}
                 </div>
                 )}

@@ -5,6 +5,7 @@ import MainPage from "./components/pages/MainPage";
 import Clips from "./components/pages/Clips";
 import Videos from "./components/pages/Videos";
 import Moderators from "./components/pages/users/Moderators";
+import BannedUsers from "./components/pages/users/BannedUsers";
 import ModalPlayer from './components/ModalPlayer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="/klipy" exact component={Clips}/>
             <Route path="/wideo" exact component={Videos}/>
             <Route path="/moderatorzy" exact component={Moderators}/>
+            <Route path="/zbanowani" exact component={BannedUsers}/>
         </Switch>
       </div>
     </Router>

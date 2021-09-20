@@ -10,14 +10,7 @@ export default class Clips extends React.Component {
         this.state = {
             loading: true,
             url: "https://api.bigosbloodyboy.pl/getClips.php",
-            urlGame: "https://api.twitch.tv/helix/games?id=",
-            requestOptions: {
-                method: 'GET',
-                headers: { 
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_TWITCH_AUTH_TOKEN,
-                    'Client-ID': process.env.REACT_APP_TWITCH_CLIENT_ID
-                },
-            },
+            urlGame: "https://api.bigosbloodyboy.pl/getGames.php",
             showPlayer: false,   
             embedUrl: "",
             clips: []
@@ -43,8 +36,13 @@ export default class Clips extends React.Component {
 
     getGames(clip, index) {
         fetch(
-            this.state.urlGame + clip.game_id, 
-            this.state.requestOptions
+            this.state.urlGame, 
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    game_id: clip.game_id,
+                })
+            }
         )
         .then(response => response.json())
         .then(json => {
