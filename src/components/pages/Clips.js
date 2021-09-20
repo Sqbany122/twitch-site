@@ -9,7 +9,7 @@ export default class Clips extends React.Component {
         super(props)
         this.state = {
             loading: true,
-            url: "https://api.twitch.tv/helix/clips?broadcaster_id=" + process.env.REACT_APP_MY_CHANNEL_ID,
+            url: "https://api.bigosbloodyboy.pl/getClips.php",
             urlGame: "https://api.twitch.tv/helix/games?id=",
             requestOptions: {
                 method: 'GET',
@@ -29,8 +29,7 @@ export default class Clips extends React.Component {
 
     getClips() {
         fetch(
-            this.state.url, 
-            this.state.requestOptions
+            this.state.url
         )
         .then(response => response.json())
         .then(json => {
