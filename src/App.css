@@ -12,6 +12,10 @@ html, body {
   background-color: #fff;
 }
 
+.lightgrey-text {
+  color: lightgray;
+}
+
 .margin-left {
   margin-left: .5rem;
 }

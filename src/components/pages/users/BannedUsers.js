@@ -9,7 +9,8 @@ export default class BannedUsers extends React.Component {
         this.state = {
             loading: true,
             url: "https://api.bigosbloodyboy.pl/getBannedUsers.php",
-            bannedUsers: []
+            bannedUsers: [],
+            countBannedUsers: "",
         }
         this.getBannedUsers = this.getBannedUsers.bind(this);
     }
@@ -24,7 +25,7 @@ export default class BannedUsers extends React.Component {
                 let date = dateFormat(item.created_at, "mediumDate");
                 item.created_at = date;
             })
-            this.setState({ bannedUsers: json.data, loading: false });
+            this.setState({ bannedUsers: json.data, countBannedUsers: json.data.length, loading: false });
         })
     }
 
@@ -35,7 +36,7 @@ export default class BannedUsers extends React.Component {
     render() {
         return (
             <div className="row py-4 px-4">
-                <h1 className="text-light">Zbanowani użytkownicy</h1>
+                <h1 className="text-light">Zbanowani użytkownicy ({this.state.countBannedUsers})</h1>
                 {this.state.loading || !this.state.bannedUsers ? (
                     <div>Loading....</div>
                 ) : (

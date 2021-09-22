@@ -11,6 +11,7 @@ export default class Videos extends React.Component {
             loading: true,
             urlVideos: "https://api.bigosbloodyboy.pl/getVideos.php",
             showPlayer: false,   
+            countVideos: "",
             embedUrl: "",
             videos: []
         }
@@ -32,7 +33,7 @@ export default class Videos extends React.Component {
                 item.created_at = date;
                 item.url = "https://player.twitch.tv/?video=" + item.id + "&parent=bigosbloodyboy.pl&autoplay=false";
             })
-            this.setState({ videos: json.data, loading: false });
+            this.setState({ videos: json.data, countVideos: json.data.length, loading: false });
         })
     }
 
@@ -47,7 +48,7 @@ export default class Videos extends React.Component {
     render() {
         return (
             <div className="row py-4 px-4">
-                <h1 className="text-light">Zapisy transmisji</h1>
+                <h1 className="text-light">Zapisy transmisji ({this.state.countVideos})</h1>
                 {this.state.loading || !this.state.videos ? (
                     <div>Loading....</div>
                 ) : (

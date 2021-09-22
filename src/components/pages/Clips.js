@@ -12,6 +12,7 @@ export default class Clips extends React.Component {
             url: "https://api.bigosbloodyboy.pl/getClips.php",
             urlGame: "https://api.bigosbloodyboy.pl/getGames.php",
             showPlayer: false,   
+            countClips: "",
             embedUrl: "",
             downloadUrl: "",
             clips: []
@@ -27,7 +28,7 @@ export default class Clips extends React.Component {
         )
         .then(response => response.json())
         .then(json => {
-            this.setState({ clips: json.data, loading: false });
+            this.setState({ clips: json.data, countClips: json.data.length, loading: false });
             console.log(this.state.clips)
             this.state.clips.map((clip, index) => {
                 this.getGames(clip, index);
@@ -68,7 +69,7 @@ export default class Clips extends React.Component {
     render() {
         return (
             <div className="row py-4 px-4">
-                <h1 className="text-light">Klipy</h1>
+                <h1 className="text-light">Klipy ({this.state.countClips})</h1>
                 {this.state.loading || !this.state.clips ? (
                     <div>Loading....</div>
                 ) : (

@@ -9,7 +9,8 @@ export default class Moderators extends React.Component {
         this.state = {
             loading: true,
             url: "https://api.bigosbloodyboy.pl/getModerators.php",
-            moderators: []
+            moderators: [],
+            countModerators: "",
         }
         this.getModerators = this.getModerators.bind(this);
     }
@@ -24,7 +25,7 @@ export default class Moderators extends React.Component {
                 let date = dateFormat(item.created_at, "mediumDate");
                 item.created_at = date;
             })
-            this.setState({ moderators: json.data, loading: false });
+            this.setState({ moderators: json.data, countModerators: json.data.length, loading: false });
         })
     }
 
@@ -35,7 +36,7 @@ export default class Moderators extends React.Component {
     render() {
         return (
             <div className="row py-4 px-4">
-                <h1 className="text-light">Moderatorzy</h1>
+                <h1 className="text-light">Moderatorzy ({this.state.countModerators})</h1>
                 {this.state.loading || !this.state.moderators ? (
                     <div>Loading....</div>
                 ) : (

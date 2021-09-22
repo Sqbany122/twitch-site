@@ -4,9 +4,10 @@ import Navigation from "./components/Navbar";
 import MainPage from "./components/pages/MainPage";
 import Clips from "./components/pages/Clips";
 import Videos from "./components/pages/Videos";
+import Commands from "./components/pages/Commands";
 import Moderators from "./components/pages/users/Moderators";
 import BannedUsers from "./components/pages/users/BannedUsers";
-import ModalPlayer from './components/ModalPlayer';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/wideo" exact component={Videos}/>
             <Route path="/moderatorzy" exact component={Moderators}/>
             <Route path="/zbanowani" exact component={BannedUsers}/>
+            <Route path="/komendy" exact component={Commands}/>
         </Switch>
       </div>
     </Router>
