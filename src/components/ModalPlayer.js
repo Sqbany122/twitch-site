@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
 export default class ModalPlayer extends React.Component {
 
     constructor(props) {
@@ -20,12 +19,12 @@ export default class ModalPlayer extends React.Component {
                     </div>
                     <div className="modalPlayerBox">
                     <iframe
-                            src={this.props.embedUrl}
-                            height="720px"
-                            width="1280px"
-                            className="rounded-full"
-                            allowfullscreen="true">
-                        </iframe>
+                        src={this.props.embedUrl}
+                        height="720px"
+                        width="1280px"
+                        className="rounded-full"
+                        allowfullscreen="true">
+                    </iframe>
                     </div>
                 </div>
             </div>
