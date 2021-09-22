@@ -142,3 +142,15 @@ html, body {
   color: lightgray !important;
   font-size: 0.8rem;
 }
+
+.modalButtons {
+  height: 40px;
+}
+
+.downloadButton {
+  float: right;
+}
+
+.downloadButton a {
+  background-color: #fff;
+}
