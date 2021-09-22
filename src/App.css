@@ -8,6 +8,14 @@ html, body {
   text-align: center;
 }
 
+.bg-white {
+  background-color: #fff;
+}
+
+.margin-left {
+  margin-left: .5rem;
+}
+
 .rounded-full {
   border-radius: 1rem;
 }
@@ -141,14 +149,6 @@ html, body {
 .moderatorBox div .moderatorCreatedAt {
   color: lightgray !important;
   font-size: 0.8rem;
-}
-
-.modalButtons {
-  height: 40px;
-}
-
-.downloadButton {
-  float: right;
 }
 
 .downloadButton a {
