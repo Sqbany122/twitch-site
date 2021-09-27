@@ -21,17 +21,40 @@ export default class Commands extends React.Component {
             commandsForAll: {
                 watchtime: {
                     description: "pokazuje ilość czasu spędzoną przez widza na kanale",
-                    aditionalInfo: false
+                    aditionalInfo: false,
+                    prefix: "!",
+                },
+                mods: {
+                    description: "pokazuje liste moderatorów kanału",
+                    aditionalInfo: false,
+                    prefix: "/",
+                },
+                vips: {
+                    description: "pokazuje liste vipów na kanale",
+                    aditionalInfo: false,
+                    prefix: "/",
                 },
             },
             commandsModeration: {
                 game: {
                     description: "pozwala zmienić aktualnie streamowaną gre",
-                    aditionalInfo: " [nazwa_gry]"
+                    aditionalInfo: " [nazwa_gry]",
+                    prefix: "!",
                 },
                 title: {
                     description: "pozwala zmienić tytuł streama",
-                    aditionalInfo: " [nowy_tytuł_streama]"
+                    aditionalInfo: " [nowy_tytuł_streama]",
+                    prefix: "!",
+                },
+                timeout: {
+                    description: "tymczasowe wykluczenie użytkownika z czatu",
+                    aditionalInfo: " [uzytkownik] [sekundy]",
+                    prefix: "/",
+                },
+                ban: {
+                    description: "banowanie użytkownika permamentnie",
+                    aditionalInfo: " [uzytkownik]",
+                    prefix: "/",
                 },
             }
         }
@@ -68,7 +91,7 @@ export default class Commands extends React.Component {
                                     <div className="px-3 my-4">
                                         {Object.keys(this.state.commandsForAll).map((commandName) => (
                                             <p>
-                                                <b>!{commandName}</b>
+                                                <b>{this.state.commandsForAll[commandName].prefix}{commandName}</b>
                                                 {this.state.commandsForAll[commandName].aditionalInfo ? this.state.commandsForAll[commandName].aditionalInfo + " - " : " - "}
                                                 <span className="lightgrey-text">{this.state.commandsForAll[commandName].description}</span>
                                             </p>
@@ -82,7 +105,7 @@ export default class Commands extends React.Component {
                                     <div className="px-3 my-4">
                                         {Object.keys(this.state.commandsModeration).map((commandName) => (
                                             <p>
-                                                <b>!{commandName}</b>
+                                                <b>{this.state.commandsModeration[commandName].prefix}{commandName}</b>
                                                 {this.state.commandsModeration[commandName].aditionalInfo ? this.state.commandsModeration[commandName].aditionalInfo + " - " : " - "}
                                                 <span className="lightgrey-text">{this.state.commandsModeration[commandName].description}</span>
                                             </p>

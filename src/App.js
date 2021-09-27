@@ -4,6 +4,7 @@ import Navigation from "./components/Navbar";
 import MainPage from "./components/pages/MainPage";
 import Clips from "./components/pages/Clips";
 import Videos from "./components/pages/Videos";
+import Projects from "./components/pages/Projects";
 import Commands from "./components/pages/Commands";
 import Moderators from "./components/pages/users/Moderators";
 import BannedUsers from "./components/pages/users/BannedUsers";
@@ -23,6 +24,7 @@ function App() {
             <Route path="/moderatorzy" exact component={Moderators}/>
             <Route path="/zbanowani" exact component={BannedUsers}/>
             <Route path="/komendy" exact component={Commands}/>
+            <Route path="/projekty" exact component={Projects}/>
         </Switch>
       </div>
     </Router>

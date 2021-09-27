@@ -1,4 +1,6 @@
 html, body {
+  width: 100%;
+  height: 100%;
   background-color: #000;
   overflow-x: hidden;
   font-family: 'Urbanist', sans-serif;
@@ -6,6 +8,22 @@ html, body {
 
 .App {
   text-align: center;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.mainBackgroundImage {
+  position: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.9;
 }
 
 .bg-white {
@@ -157,4 +175,20 @@ html, body {
 
 .downloadButton a {
   background-color: #fff;
+}
+
+.projectStatusOnline {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: lime;
+  margin-right: .5rem;
+}
+
+.projectStatusOffline {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  margin-right: .5rem;
 }
